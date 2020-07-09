@@ -29,6 +29,10 @@ function update() {
     }
 }
 
+function colorClicked(index) {
+    copyToClipboard(palette[index]);
+}
+
 data = "";
 
 function parsePlaceholder() {
@@ -57,3 +61,15 @@ function parseInput() {
     data = document.getElementById("parser-input").value;
     parsePlaceholder();
 }
+
+const copyToClipboard = str => {
+    const el = document.createElement('textarea');
+    el.value = str;
+    el.setAttribute('readonly', '');
+    el.style.position = 'absolute';
+    el.style.left = '-9999px';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+};
