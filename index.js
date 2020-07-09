@@ -29,17 +29,19 @@ function update() {
     }
 }
 
-function parsePlaceholder(data) {
+data = "";
+
+function parsePlaceholder() {
     var obj = JSON.parse(data);
     var values = []
     for (const placeholder of obj["placeholders"]) {
         var name = placeholder["placeholder"];
         if (name[0] === 'c') {
-            console.log(name);
+            // console.log(name);
             var suffixes = placeholder["suffixes"];
             for (var j = 0, len = suffixes.length; j < len; j++) {
                 if (suffixes[j]["suffix"] === "hex") {
-                    console.log(suffixes[j]["value"]);
+                    // console.log(suffixes[j]["value"]);
                     if (values.length < 16) {
                         values.push(suffixes[j]["value"]);
                     }
@@ -47,5 +49,11 @@ function parsePlaceholder(data) {
             }
         }
     }
-    console.log(values);
+    palette = values;
+    update();
+}
+
+function parseInput() {
+    data = document.getElementById("parser-input").value;
+    parsePlaceholder();
 }

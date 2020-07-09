@@ -12,7 +12,7 @@
 
 <body onload="init();">
     <div id="content">
-        <div id="colors">
+        <div id="colors" onmouseover="document.getElementById('input-div').style.height='0px';">
             <div style="grid-row: 1" class="color-cube" id="color-00"></div>
             <div style="grid-row: 1" class="color-cube" id="color-01"></div>
             <div style="grid-row: 1" class="color-cube" id="color-02"></div>
@@ -29,6 +29,13 @@
             <div style="grid-row: 2" class="color-cube" id="color-0D"></div>
             <div style="grid-row: 2" class="color-cube" id="color-0E"></div>
             <div style="grid-row: 2" class="color-cube" id="color-0F"></div>
+        </div>
+    </div>
+    <div id="form">
+        <div id="hot-corner" onmouseover="document.getElementById('input-div').style.height='25vh';"> </div>
+        <div id="input-div">
+            <textarea id="parser-input"></textarea>
+            <input type="button" id="parser-submit" onclick="parseInput()" value="Parse" />
         </div>
     </div>
 </body>
