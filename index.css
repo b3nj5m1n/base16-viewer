@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #171517;
+}
+
+#content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#colors {
+    display: grid;
+    padding-top: 35vh;
+    grid-gap: 50px;
+}
+
+.color-cube {
+    /* margin: 5px; */
+    padding: 25px;
+    border-radius: 3px;
+}
