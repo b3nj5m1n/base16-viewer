@@ -73,7 +73,8 @@ function parseBase16() {
         for (var j = 0; j < 16; j++) {
             var line = lines[i].replace(/:.*/, "").replace("base", "");
             if (parseInt(line, 16) === j) {
-                hex = lines[i].replace(/^.* \"/, "").replace('"', "");;
+                hex = lines[i].replace(/^.* \"/, "");
+                hex = hex.replace(/\".*/, "");
                 palette[j] = "#" + hex;
             }
         }
