@@ -1,4 +1,5 @@
 
+// Dracula
 palette = [
     "#282936",
     "#3a3c4e",
@@ -34,6 +35,41 @@ function colorClicked(index) {
 }
 
 data = "";
+// 0 = base16
+// 1 = Xresources
+// 2 = placeholder file format (From my dotfiles)
+dataFormat = -1;
+
+function getDataType() {
+    // Test for base16 format
+    if (data.includes("scheme") && data.includes("author") && data.includes("base00")) {
+        dataFormat = 0;
+    }
+    // Test for Xresources format
+    else if (data.includes("*.color0:")) {
+        dataFormat = 1;
+    }
+    // Test for placeholder format
+    else if (data.includes("placeholder") && data.includes("suffix") && data.includes("value")) {
+        dataFormat = 2;
+    }
+}
+
+function parseBase16() {
+    var lines = data.split('\n');
+    for (var i = 0, len = lines.length; i < len; i++) {
+        for (var j = 0; j < 16; j++) {
+            var line = lines[i].replace(/:.*/, "").replace("base", "");
+            if (parseInt(line, 16) === j) {
+                hex = lines[i].replace(/^.* \"/, "").replace('"', "");;
+                palette[j] = "#" + hex;
+            }
+        }
+    }
+}
+
+function parseXresources() {
+}
 
 function parsePlaceholder() {
     var obj = JSON.parse(data);
@@ -54,12 +90,20 @@ function parsePlaceholder() {
         }
     }
     palette = values;
-    update();
 }
 
 function parseInput() {
     data = document.getElementById("parser-input").value;
-    parsePlaceholder();
+    getDataType();
+    if (dataFormat === 0) {
+        parseBase16();
+    }
+    else if (dataFormat === 1) {
+    }
+    else if (dataFormat === 2) {
+        parsePlaceholder();
+    }
+    update();
 }
 
 const copyToClipboard = str => {
