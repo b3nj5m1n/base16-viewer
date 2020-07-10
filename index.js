@@ -1,25 +1,10 @@
 
-// Dracula
 palette = [
-    "#282936",
-    "#3a3c4e",
-    "#4d4f68",
-    "#626483",
-    "#62d6e8",
-    "#e9e9f4",
-    "#f1f2f8",
-    "#f7f7fb",
-    "#ea51b2",
-    "#b45bcf",
-    "#00f769",
-    "#ebff87",
-    "#a1efe4",
-    "#62d6e8",
-    "#b45bcf",
-    "#00f769"
 ]
 
 function init() {
+    data = exampleColors[2]["value"];
+    parseData();
     update();
 }
 
@@ -46,7 +31,7 @@ function getDataType() {
         dataFormat = 0;
     }
     // Test for Xresources format
-    else if (data.includes("*.color0:")) {
+    else if (data.includes("*.color0:") || data.includes("*color0:")) {
         dataFormat = 1;
     }
     // Test for placeholder format
@@ -72,7 +57,8 @@ function parseXresources() {
     var lines = data.split('\n');
     for (var i = 0, len = lines.length; i < len; i++) {
         for (var j = 0; j < 16; j++) {
-            var line = lines[i].replace(/:.*/, "").replace("*.color", "");
+            var line = lines[i].replace(/:.*/, "").replace(/^.*color/, "");
+            console.log(line);
             if (parseInt(line) === j) {
                 hex = lines[i].replace(/^.* #/, "").replace('"', "");;
                 palette[j] = "#" + hex;
@@ -102,8 +88,7 @@ function parsePlaceholder() {
     palette = values;
 }
 
-function parseInput() {
-    data = document.getElementById("parser-input").value;
+function parseData() {
     getDataType();
     if (dataFormat === 0) {
         parseBase16();
@@ -115,6 +100,11 @@ function parseInput() {
         parsePlaceholder();
     }
     update();
+}
+
+function parseInput() {
+    data = document.getElementById("parser-input").value;
+    parseData();
 }
 
 const copyToClipboard = str => {
