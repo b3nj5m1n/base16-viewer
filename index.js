@@ -5,7 +5,8 @@ palette = [
 var index = 0;
 
 function init() {
-    index = Math.floor(Math.random() * exampleColors.length);
+    if (Math.floor(Math.random() * 5) === 1) {index = Math.floor(Math.random() * exampleColors.length)}
+    else {index = Math.floor(Math.random() * 4)}
     data = exampleColors[index]["value"];
     setHeader(exampleColors[index]["name"]);
     parseData();
