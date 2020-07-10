@@ -3,7 +3,7 @@ palette = [
 ]
 
 function init() {
-    data = exampleColors[2]["value"];
+    data = exampleColors[Math.floor(Math.random() * exampleColors.length)]["value"];
     parseData();
     update();
 }
@@ -58,7 +58,6 @@ function parseXresources() {
     for (var i = 0, len = lines.length; i < len; i++) {
         for (var j = 0; j < 16; j++) {
             var line = lines[i].replace(/:.*/, "").replace(/^.*color/, "");
-            console.log(line);
             if (parseInt(line) === j) {
                 hex = lines[i].replace(/^.* #/, "").replace('"', "");;
                 palette[j] = "#" + hex;
