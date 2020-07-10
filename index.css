@@ -30,6 +30,7 @@ body {
     /* margin: 5px; */
     padding: 25px;
     border-radius: 3px;
+    transition: background-color 500ms ease-in-out;
 }
 
 #form {
@@ -49,8 +50,16 @@ body {
 }
 
 #hot-corner {
-    background-color: #fff;
     height: 5px;
+    background: linear-gradient(268deg, #833ab4, #fd1d1d, #fcb045);
+    background-size: 600% 600%;
+    animation: gradientBackground 10s ease infinite;
+}
+
+@keyframes gradientBackground {
+    0%{background-position:0% 45%}
+    50%{background-position:100% 56%}
+    100%{background-position:0% 45%}
 }
 
 #parser-input {
