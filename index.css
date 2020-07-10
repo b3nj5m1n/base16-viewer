@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -15,7 +17,7 @@ body {
 
 #colors {
     display: grid;
-    padding-top: 35vh;
+    padding-top: 15vh;
     grid-gap: 50px;
 }
 
@@ -62,3 +64,20 @@ textarea {
     background-color: #171517;
     color: #f5f5f5;
 }
+
+#header-container {
+    width: 100%;
+    margin-top: 5vh;
+    display: flex;
+    justify-content: center;
+}
+
+#header {
+    background-color: transparent;
+    border: none;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20vh;
+    color: white;
+    text-align: center;
+}
+

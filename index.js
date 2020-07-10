@@ -3,9 +3,21 @@ palette = [
 ]
 
 function init() {
-    data = exampleColors[Math.floor(Math.random() * exampleColors.length)]["value"];
+    var index = Math.floor(Math.random() * exampleColors.length);
+    data = exampleColors[index]["value"];
+    setHeader(exampleColors[index]["name"]);
     parseData();
     update();
+}
+
+function setHeader(headerText) {
+    document.getElementById("header").value = "";
+    var header = headerText.split("");
+    for (var i = 0, len = headerText.length; i < len; i++) {
+        setTimeout(function () {
+            document.getElementById("header").value += header.shift();
+        }, 200 * i + Math.floor(Math.random() * 100));
+    }
 }
 
 function update() {
