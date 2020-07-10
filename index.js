@@ -69,6 +69,16 @@ function parseBase16() {
 }
 
 function parseXresources() {
+    var lines = data.split('\n');
+    for (var i = 0, len = lines.length; i < len; i++) {
+        for (var j = 0; j < 16; j++) {
+            var line = lines[i].replace(/:.*/, "").replace("*.color", "");
+            if (parseInt(line) === j) {
+                hex = lines[i].replace(/^.* #/, "").replace('"', "");;
+                palette[j] = "#" + hex;
+            }
+        }
+    }
 }
 
 function parsePlaceholder() {
@@ -99,6 +109,7 @@ function parseInput() {
         parseBase16();
     }
     else if (dataFormat === 1) {
+        parseXresources();
     }
     else if (dataFormat === 2) {
         parsePlaceholder();
