@@ -2,20 +2,35 @@
 palette = [
 ]
 
+var index = 0;
+
 function init() {
-    var index = Math.floor(Math.random() * exampleColors.length);
+    index = Math.floor(Math.random() * exampleColors.length);
     data = exampleColors[index]["value"];
     setHeader(exampleColors[index]["name"]);
     parseData();
     update();
 }
 
+function cycleSchemes(direction) {
+    if (index <= 0) {index = exampleColors.length;}
+    index = (index + direction) % exampleColors.length;
+    data = exampleColors[index]["value"];
+    setHeader(exampleColors[index]["name"]);
+    parseData();
+    update();
+}
+
+var header = "";
+
 function setHeader(headerText) {
     document.getElementById("header").value = "";
-    var header = headerText.split("");
+    header = headerText.split("");
     for (var i = 0, len = headerText.length; i < len; i++) {
         setTimeout(function () {
-            document.getElementById("header").value += header.shift();
+            if (header.length > 0) {
+                document.getElementById("header").value += header.shift();
+            }
         }, 200 * i + Math.floor(Math.random() * 100));
     }
 }

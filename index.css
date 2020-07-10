@@ -6,6 +6,8 @@
 * {
     margin: 0;
     padding: 0;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -84,3 +86,71 @@ textarea {
     text-align: center;
 }
 
+#nav-left img, #nav-right img {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 25%;
+    transition: 100ms;
+    animation-name: rotate; 
+    animation-duration: 2s; 
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    opacity: 0.5;
+    filter: drop-shadow(0px 0px 2px #171517);
+}
+
+@keyframes rotate {
+    0% {
+        filter: drop-shadow(0px 0px 4px);
+    }
+    50% {
+        filter: drop-shadow(0px 0px 1px);
+    }
+    100% {
+        filter: drop-shadow(0px 0px 4px);
+    }
+}
+
+#nav-left {
+    top: 0;
+    left: 0;
+    width: 8%;
+    height: 100%;
+    background-color: transparent;
+    position: absolute;
+}
+
+#nav-right {
+    top: 0;
+    right: 0;
+    width: 8%;
+    height: 100%;
+    background-color: transparent;
+    position: absolute;
+}
+
+#nav-left img {
+    left: -100%;
+}
+
+#nav-left:hover img {
+    left: 15%;
+}
+
+#nav-right img {
+    right: -100%;
+}
+
+#nav-right:hover img {
+    right: 15%;
+}
+
+@media only screen and (max-width: 470px) {
+    #nav-right {
+        width: 10vw;
+    }
+    #nav-left {
+        width: 10vw;
+    }
+}

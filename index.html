@@ -15,6 +15,12 @@
     <div id="header-container">
         <input type="text" id="header" />
     </div>
+    <div id="nav-left">
+        <img onclick="cycleSchemes(-1)" src="res/pics/aiga_left_arrow.svg" />
+    </div>
+    <div id="nav-right">
+        <img onclick="cycleSchemes(1)" src="res/pics/aiga_right_arrow.svg" />
+    </div>
     <div id="content">
         <div id="colors" onmouseover="document.getElementById('input-div').style.height='0px';">
             <div onclick="colorClicked(0)" style="grid-row: 1" class="color-cube" id="color-00"></div>
