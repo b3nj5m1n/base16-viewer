@@ -55,7 +55,7 @@ dataFormat = -1;
 
 function getDataType() {
     // Test for base16 format
-    if (data.includes("scheme") && data.includes("author") && data.includes("base00")) {
+    if (data.includes("scheme") || data.includes("author") || data.includes("base00")) {
         dataFormat = 0;
     }
     // Test for Xresources format
@@ -65,6 +65,10 @@ function getDataType() {
     // Test for placeholder format
     else if (data.includes("placeholder") && data.includes("suffix") && data.includes("value")) {
         dataFormat = 2;
+    }
+    // Assume base16 by default
+    else {
+        dataFormat = 0;
     }
 }
 
@@ -139,7 +143,7 @@ function exportBase16() {
     result = "";
     result += 'scheme: "' + document.getElementById("header").value + '"\n';
     for (var i = 0, len = palette.length; i < len; i++) {
-        result += 'base0' + i.toString(16) + ': "' + palette[i] + '"\n'
+        result += 'base0' + i.toString(16) + ': "' + palette[i].replace("#", "") + '"\n'
     }
     copyToClipboard(result);
 }
