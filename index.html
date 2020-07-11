@@ -45,7 +45,9 @@
         <div id="hot-corner" onmouseover="document.getElementById('input-div').style.height='25vh';"> </div>
         <div id="input-div">
             <textarea id="parser-input"></textarea>
-            <input type="button" id="parser-submit" onclick="parseInput()" value="Parse" />
+            <input type="button" class="btn" id="parser-submit" onclick="parseInput()" value="Parse" />
+            <input type="button" class="btn" id="export-submit" onclick="exportBase16()"
+                value="Copy base16 export to clipboard" />
         </div>
     </div>
 </body>

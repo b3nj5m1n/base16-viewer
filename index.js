@@ -135,6 +135,15 @@ function parseInput() {
     parseData();
 }
 
+function exportBase16() {
+    result = "";
+    result += 'scheme: "' + document.getElementById("header").value + '"\n';
+    for (var i = 0, len = palette.length; i < len; i++) {
+        result += 'base0' + i.toString(16) + ': "' + palette[i] + '"\n'
+    }
+    copyToClipboard(result);
+}
+
 const copyToClipboard = str => {
     const el = document.createElement('textarea');
     el.value = str;
